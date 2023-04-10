@@ -1,29 +1,28 @@
-import java.util.Scanner;
+
 
 public class Main {
-    String username, password;
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("LOGIN");
-        System.out.println("Username: ");
-        String username = scanner.nextLine();
 
-        System.out.println("Password: ");
-        String password = scanner.nextLine();
+    public static void main(String[] args) {
+        Login();
+    }
+    public static void Login(){
+        System.out.println("LOGIN");
+        System.out.print("Username: ");
+        String username = Utility.scanSTR();
+
+        System.out.print("Password: ");
+        String password = Utility.scanSTR();
 
 //        System.out.println(username);
 //        System.out.println(password);
 
 
-        if ((username.equals("Admin") || username.equals("admin")) && password.equals("admin")){
+        if (username.equals("admin") && password.equals("admin")){
             System.out.println("kamu admin");
         }else{
             System.out.println("User "+ username);
-            Customer MyCustomer = new Customer();
-            MyCustomer.myHello();
+            Customer.menuCustomer();
         }
-
-//            Admin MyAdmin = new Admin();
-//            MyAdmin.myHello();
     }
+
 }
