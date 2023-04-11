@@ -17,10 +17,13 @@ public class Main {
 //        System.out.println(password);
 
 
-        if (username.equals("admin") && password.equals("admin")){
-            System.out.println("kamu admin");
-        }else{
-            System.out.println("User "+ username);
+        if (username.equals("admin") && password.equals("admin")) {
+
+            Admin Admin = new Admin();
+            Admin.MenuAdmin();
+
+        } else {
+            System.out.println("User " + username);
             Customer.menuCustomer();
         }
     }

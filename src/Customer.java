@@ -10,7 +10,7 @@ public class Customer {
         System.out.println("3. Kembali Login");
         System.out.print("Masukkan pilihan: ");
         String pilihan = Utility.scanSTR();
-        System.out.println(pilihan);
+//        System.out.println(pilihan);
         switch (pilihan){
             case "1":
                 System.out.println("Buat pesanan");
