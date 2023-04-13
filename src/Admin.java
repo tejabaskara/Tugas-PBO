@@ -45,6 +45,7 @@ public class Admin {
         restaurant.add(new ArrayList<>());
         hargaMenu.add(new ArrayList<>());
 
+
         System.out.println("TAMBAH RESTAURANT");
         System.out.print("Masukkan nama restaurant: ");
         String tempNama = Utility.scanSTR();
@@ -60,7 +61,7 @@ public class Admin {
         int pilihan = 0;
         do {
             int i = 1;
-//            System.out.print("masukkan menu: ");
+            System.out.print("masukkan menu: ");
 //            String menu = Utility.scanSTR();
             String menu = "a";
             restaurant.get(banyakRestauran).add(i, menu);
@@ -73,7 +74,7 @@ public class Admin {
             System.out.print("Masukkan pilihan: ");
             pilihan = Utility.scanINT();
             i+=1;
-        }while (pilihan == 1);
+        }while (pilihan != 0);
 
 //        for (int i = 1; i <= banyakMenu; i++){
 //        }
@@ -81,8 +82,8 @@ public class Admin {
 //        System.out.println(restaurant);
 //        System.out.println(alamat);
 //        System.out.println(hargaMenu);
-        System.out.println(restaurant.size());
-        System.out.println(restaurant.get(banyakRestauran).size());
+//        System.out.println(restaurant.size());
+//        System.out.println(restaurant.get(banyakRestauran).size());
         banyakRestauran += 1;
     }
 
