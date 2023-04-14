@@ -60,20 +60,20 @@ public class Admin {
 //        int banyakMenu = Utility.scanINT();
         int pilihan = 0;
         do {
-            int i = 1;
+            int i = 0;
+            i+=1;
             System.out.print("masukkan menu: ");
-//            String menu = Utility.scanSTR();
-            String menu = "a";
+            String menu = Utility.scanSTR();
+//            String menu = "a";
             restaurant.get(banyakRestauran).add(i, menu);
-//            System.out.print("masukkan harga: ");
-//            int harga = Utility.scanINT();
-            int harga = 2000;
+            System.out.print("masukkan harga: ");
+            int harga = Utility.scanINT();
+//            int harga = 2000;
             hargaMenu.get(banyakRestauran).add(i-1, harga);
             System.out.println("1. Tambah menu");
             System.out.println("0. Keluar");
             System.out.print("Masukkan pilihan: ");
             pilihan = Utility.scanINT();
-            i+=1;
         }while (pilihan != 0);
 
 //        for (int i = 1; i <= banyakMenu; i++){
