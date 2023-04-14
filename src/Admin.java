@@ -14,6 +14,8 @@ public class Admin {
         System.out.println("4. Kembali ke login");
         System.out.print("Masukkan pilihan: ");
         String pilihan = Utility.scanSTR();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
 //        System.out.println(pilihan);
         switch (pilihan){
             case "1":
@@ -70,10 +72,19 @@ public class Admin {
             int harga = Utility.scanINT();
 //            int harga = 2000;
             hargaMenu.get(banyakRestauran).add(i-1, harga);
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            System.out.println("MENU");
+            for (int j=1; j < restaurant.get(banyakRestauran).size(); j++){
+                System.out.printf("%d. %s\t\t\t%s\n",j, restaurant.get(banyakRestauran).get(j), hargaMenu.get(banyakRestauran).get(j-1));
+            }
+            System.out.println();
             System.out.println("1. Tambah menu");
             System.out.println("0. Keluar");
             System.out.print("Masukkan pilihan: ");
             pilihan = Utility.scanINT();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
         }while (pilihan != 0);
 
 //        for (int i = 1; i <= banyakMenu; i++){
@@ -87,10 +98,12 @@ public class Admin {
         banyakRestauran += 1;
     }
 
-    public static void menuRestaurant(){ // UNTUK MELIHAT MENU DI DALAM RESTAURANT DALAM BAGIAN LIHAT RESTAURAN
+    private static void menuRestaurant(){ // UNTUK MELIHAT MENU DI DALAM RESTAURANT DALAM BAGIAN LIHAT RESTAURAN
         System.out.println("0. Keluar");
         System.out.print("Pilih restauran untuk melihat lebih detail: ");
         int pilihan = Utility.scanINT();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         if (pilihan == 0){
             MenuAdmin();
         } else {
@@ -102,6 +115,13 @@ public class Admin {
             System.out.printf("MENU:\t\t\tHARGA:\n");
             for (int i=1; i < restaurant.get(pilihan).size(); i++){
                 System.out.printf("%d. %s\t\t\t%s\n",i, restaurant.get(pilihan).get(i), hargaMenu.get(pilihan).get(i-1));
+            }
+            System.out.println("MASUKKAN 0 UNTUK KELUAR");
+            int keluar = Utility.scanINT();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+            if (keluar == 0){
+                MenuAdmin();
             }
         }
     }
@@ -119,6 +139,8 @@ public class Admin {
         System.out.print("Pilih yang ingin dihapus");
         int pilihan = Utility.scanINT();
         restaurant.remove(pilihan-1);
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
 

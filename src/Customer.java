@@ -17,6 +17,8 @@ public class Customer {
         System.out.println("3. Kembali Login");
         System.out.print("Masukkan pilihan: ");
         String pilihan = Utility.scanSTR();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
 //        System.out.println(pilihan);
         switch (pilihan){
             case "1":
@@ -32,6 +34,7 @@ public class Customer {
                 break;
             default:
                 System.out.println("Anda salah memasukkan nilai");
+                menuCustomer();
                 break;
         }
 
@@ -62,6 +65,8 @@ public class Customer {
         int pilihan = Utility.scanINT();
         pilihanMenu.get(pesanan).add(0, pilihan); // menambahkan element nomer atau ID resetaurant pada array
         System.out.print("Masukkan jarak rumah anda dalam KM: ");
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         int jarak = Utility.scanINT();
         int ongkir = jarak * 2000;
         if (pilihan == 0){
@@ -82,6 +87,8 @@ public class Customer {
                 lihatMenu(pilihan);
                 System.out.println("0. Lihat pesanan");
                 System.out.print("Masukkan pilihan menu yang akan dipesan: ");
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 menuPesan = Utility.scanINT();
 
                 if (menuPesan == 0){
@@ -109,6 +116,8 @@ public class Customer {
                     banyakPesanan.get(pesanan).add(indexBanyak, banyak); //memasukkan data banyak pesanan per menu dalam array
                     int subtotal = banyak * hargaMenu.get(pilihan).get(menu);
                     System.out.println("Harga: " + subtotal);
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
                     totalBayar += subtotal;
 //                    System.out.println(menuPesan);
                 }
@@ -143,6 +152,8 @@ public class Customer {
         System.out.println("2. Bayar");
         System.out.println("0. Batalkan Pesanan");
         System.out.print("Masukkan pilihan: ");
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         int pilihan = Utility.scanINT();
         switch (pilihan){
             case 1:
@@ -167,6 +178,8 @@ public class Customer {
         System.out.println("2. Online");
         System.out.print("Masukkan pilihan: ");
         int pilihan = Utility.scanINT();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         switch (pilihan){
             case 1:
                 System.out.println("SILAHKAN BAYAR PADA PENGIRIM");
@@ -211,6 +224,8 @@ public class Customer {
             System.out.println("0. Lihat pesanan");
             System.out.print("Masukkan pilihan menu yang akan dipesan: ");
             int menuPesan = Utility.scanINT();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
 
             if (menuPesan == 0){
                 int totalPlusOngkir = totalBayar + ongkir;
@@ -236,6 +251,8 @@ public class Customer {
                 int subtotal = banyak * hargaMenu.get(pilihan).get(menu);
                 System.out.println("Harga: " + subtotal);
                 totalBayar += subtotal;
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
 //                    System.out.println(menuPesan);
             }
         }while (true);
@@ -264,7 +281,13 @@ public class Customer {
                 System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", j ,restaurant.get(namaRestaurant).get(menu), banyakPesanan.get(i).get(NomerData), subtotal);
             }
         }
-
+        System.out.println("MASUKKAN ANGKA 0 UNTUK KEMBALI");
+        int kembali = Utility.scanINT();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        if (kembali == 0){
+            menuCustomer();
+        }
     }
 
 
