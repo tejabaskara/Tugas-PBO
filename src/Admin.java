@@ -72,10 +72,10 @@ public class Admin {
         do {
             System.out.println("1. Tambah menu makanan");
             System.out.println("2. Tambah menu minuman");
-            System.out.print("Masukkan pilihan");
+            System.out.print("Masukkan pilihan: ");
             int menu = Utility.scanINT();
             if (menu == 1){
-                System.out.println(ma);
+//                System.out.println(ma);
                 System.out.print("Masukkan nama makanan: ");
                 String makanan = Utility.scanSTR();
 //            String menu = "a";
@@ -86,7 +86,7 @@ public class Admin {
                 hargaMakanan.get(banyakRestauran).add(ma, harga);
                 ma += 1;
             }else if (menu == 2){
-                System.out.println(mi);
+//                System.out.println(mi);
                 System.out.print("Masukkan nama minuman: ");
                 String minuman = Utility.scanSTR();
 //            String menu = "a";
@@ -100,8 +100,6 @@ public class Admin {
                 System.out.println("Anda memasukkan angka yang salah");
             }
 
-            System.out.println("MENU");
-            System.out.println();
             lihatMenu(banyakRestauran);
 
             System.out.println();
@@ -133,13 +131,13 @@ public class Admin {
         if (pilihan == 0){
             MenuAdmin();
         } else {
-            pilihan -= 1;
-            System.out.println("Nama Restaurant: " + restaurant.get(pilihan));
-            System.out.println("Alamat: " + alamat.get(pilihan));
+            int nilaiKirim = pilihan - 1;
+            System.out.println(nilaiKirim);
+            System.out.println("Nama Restaurant: " + restaurant.get(nilaiKirim));
+            System.out.println("Alamat: " + alamat.get(nilaiKirim));
 //            System.out.println("a");
 //            System.out.println(pilihan);
-            System.out.printf("MENU:\t\t\tHARGA:\n");
-            lihatMenu(pilihan);
+            lihatMenu(nilaiKirim);
             System.out.println("MASUKKAN 0 UNTUK KELUAR");
             int keluar = Utility.scanINT();
             System.out.print("\033[H\033[2J");
@@ -161,21 +159,25 @@ public class Admin {
         System.out.println();
         if (menuMakanan.get(restauran).size() != 0 && menuMinuman.get(restauran).size() != 0){
             System.out.println("MAKANAN");
+            System.out.printf("MENU:\t\t\tHARGA:\n");
             for (int nomerMakanan = 0; nomerMakanan < menuMakanan.get(restauran).size(); nomerMakanan++){
                 System.out.printf("%d. %s\t\t\t%s\n",nomerMakanan+1, menuMakanan.get(restauran).get(nomerMakanan), hargaMakanan.get(restauran).get(nomerMakanan));
             }
             System.out.println();
             System.out.println("MINUMAN");
+            System.out.printf("MENU:\t\t\tHARGA:\n");
             for (int nomerMinuman = 0; nomerMinuman < menuMinuman.get(restauran).size(); nomerMinuman++){
                 System.out.printf("%d. %s\t\t\t%s\n",nomerMinuman+1, menuMinuman.get(restauran).get(nomerMinuman), hargaMinuman.get(restauran).get(nomerMinuman));
             }
-        } else if (menuMakanan.get(banyakRestauran).size() != 0 && menuMinuman.get(banyakRestauran).size() == 0) {
+        } else if (menuMakanan.get(restauran).size() != 0 && menuMinuman.get(restauran).size() == 0) {
             System.out.println("MAKANAN");
+            System.out.printf("MENU:\t\t\tHARGA:\n");
             for (int nomerMakanan = 0; nomerMakanan < menuMakanan.get(restauran).size(); nomerMakanan++){
                 System.out.printf("%d. %s\t\t\t%s\n",nomerMakanan+1, menuMakanan.get(restauran).get(nomerMakanan), hargaMakanan.get(restauran).get(nomerMakanan));
             }
-        } else if (menuMakanan.get(banyakRestauran).size() == 0 && menuMinuman.get(banyakRestauran).size() != 0) {
+        } else if (menuMakanan.get(restauran).size() == 0 && menuMinuman.get(restauran).size() != 0) {
             System.out.println("MINUMAN");
+            System.out.printf("MENU:\t\t\tHARGA:\n");
             for (int nomerMinuman = 0; nomerMinuman < menuMinuman.get(restauran).size(); nomerMinuman++){
                 System.out.printf("%d. %s\t\t\t%s\n",nomerMinuman+1, menuMinuman.get(restauran).get(nomerMinuman), hargaMinuman.get(restauran).get(nomerMinuman));
             }
