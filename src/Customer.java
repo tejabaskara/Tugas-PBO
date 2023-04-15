@@ -144,6 +144,8 @@ public class Customer {
                     System.out.print("Masukkan nomor pilihan makanan anda: ");
                     int pilihanMakanan = Utility.scanINT();
                     pilihanMakanan -= 1;
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
 
                     if (urutanMakanan == 0){
                         pilihanMenuMakanan.get(ma).add(0, pesanan);
@@ -167,6 +169,8 @@ public class Customer {
                     System.out.print("Masukkan nomor pilihan minuman anda: ");
                     int pilihanMinuman = Utility.scanINT();
                     pilihanMinuman -= 1;
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
 
                     if (urutanMakanan == 0){
                         pilihanMenuMinuman.get(mi).add(0, pesanan);
@@ -326,9 +330,12 @@ public class Customer {
         System.out.println(riwayat);
         tampilanPesanan(ongkir, riwayat, jarak, makanan, minuman);
         System.out.println("TOTAL: " + total);
+        System.out.println();
+
         System.out.println("1. Tambah Pesanan");
         System.out.println("2. Bayar");
         System.out.println("0. Batalkan Pesanan");
+        System.out.println();
         System.out.print("Masukkan pilihan: ");
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -342,6 +349,9 @@ public class Customer {
             case 2:
                 bayar(total, ongkir, riwayat, jarak, makanan, minuman);
                 break;
+            case 0:
+                menuCustomer();
+                break;
             default:
                 pengecekanSebelumBayar(total, ongkir, riwayat, jarak, makanan, minuman);
                 break;
@@ -351,9 +361,11 @@ public class Customer {
     private static void bayar(int total, int ongkir, int riwayat, int jarak, int makanan, int minuman){
         tampilanPesanan(ongkir, riwayat, jarak, makanan, minuman);
         System.out.printf("TOTAL: %d\n", total);
+        System.out.println();
         System.out.println("Metode pembayaran");
         System.out.println("1. TUNAI");
         System.out.println("2. Online");
+        System.out.println();
         System.out.print("Masukkan pilihan: ");
         int pilihan = Utility.scanINT();
         System.out.print("\033[H\033[2J");
@@ -362,13 +374,16 @@ public class Customer {
             case 1:
                 System.out.println("SILAHKAN BAYAR PADA PENGIRIM");
                 System.out.println("TERIMAKASIH SUDAH MENGGUNAKAN JASA KAMI");
+                System.out.println();
                 break;
             case 2:
                 System.out.println("SILAHKAN BAYAR DENGAN e-WALLET ANDA");
                 System.out.println("TERIMAKASIH SUDAH MENGGUNAKAN JASA KAMI");
+                System.out.println();
                 break;
             default:
                 System.out.println("SILAHKAN MENGULANGI MEMASUKKAN PILIHAN ANDA!");
+                System.out.println();
                 bayar(total, ongkir, riwayat, jarak, makanan, minuman);
                 break;
         }
@@ -476,50 +491,43 @@ public class Customer {
         int pesananDilakukan = pilihanRestauran.size();
 
         for (int i = 0;i<pesananDilakukan;i++){
-            int pesananMakanan = 0;
-            int pesananMinuman = 0;
+            int pesananMakanan = -1;
+            int pesananMinuman = -1;
             int namaRestauran = pilihanRestauran.get(i) - 1;
 
+            System.out.println("PESANAN KE-"+ (i+1));
+            System.out.println();
             System.out.println("Restauran: "+ restaurant.get(namaRestauran));
             System.out.println("Alamat: "+ alamat.get(namaRestauran));
 
-            /*
-            buat perulangang di dalama perulangan untuk dapatin angka pada semua x pada index 0 di pilihan menu makanan dan minuman
-            dan cek jika itu sama dengan i ambil nilainya print kalo engga jangan di print
-             */
+
+//            System.out.println(pilihanMenuMakanan.size());
+//            System.out.println(pilihanMenuMinuman.size());
 
 
             if (pilihanMenuMakanan.size() != 0 && pilihanMenuMinuman.size() != 0){
                 for(int j = 0; j<pilihanMenuMakanan.size(); j++){
-                    if (pilihanMenuMakanan.get(j).get(0) == i){
+                    if (pilihanMenuMakanan.get(j).size() != 0 && pilihanMenuMakanan.get(j).get(0) == i){
                         pesananMakanan = pilihanMenuMakanan.get(j).get(0);
-                    }else {
-                        pesananMakanan = -1;
                     }
                 }
                 for (int k = 0; k < pilihanMenuMinuman.size(); k++){
-                    if (pilihanMenuMinuman.get(k).get(0) == i){
+                    if (pilihanMenuMinuman.get(k).size() != 0 && pilihanMenuMinuman.get(k).get(0) == i){
                         pesananMinuman = pilihanMenuMinuman.get(i).get(0);
-                    }else {
-                        pesananMinuman = -1;
                     }
                 }
 
             } else if (pilihanMenuMakanan.size() == 0 && pilihanMenuMinuman.size() != 0){
                 for (int k = 0; k < pilihanMenuMinuman.size(); k++){
-                    if (pilihanMenuMinuman.get(k).get(0) == i){
+                    if (pilihanMenuMinuman.get(k).size() != 0 && pilihanMenuMinuman.get(k).get(0) == i){
                         pesananMinuman = pilihanMenuMinuman.get(i).get(0);
-                    }else {
-                        pesananMinuman = -1;
                     }
                 }
 
             } else if (pilihanMenuMakanan.size() != 0 && pilihanMenuMinuman.size() == 0) {
                 for(int j = 0; j<pilihanMenuMakanan.size(); j++){
-                    if (pilihanMenuMakanan.get(j).get(0) == i){
+                    if (pilihanMenuMakanan.get(j).size() != 0 && pilihanMenuMakanan.get(j).get(0) == i){
                         pesananMakanan = pilihanMenuMakanan.get(j).get(0);
-                    }else {
-                        pesananMakanan = -1;
                     }
                 }
             }
@@ -527,98 +535,97 @@ public class Customer {
             if (pilihanMenuMakanan.size() != 0 && pilihanMenuMinuman.size() != 0 && i == pesananMakanan && i == pesananMinuman){
                 // user memesan makanan dan minuman
 
-                System.out.println("PESANAN KE-"+ (i+1));
-                System.out.println();
                 System.out.println("MAKANAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
-                for (int l = 0; l < pilihanMenuMakanan.get(ma).size(); l++ ){
+                for (int l = 1; l < pilihanMenuMakanan.get(i).size(); l++ ){
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
                     int menu = pilihanMenuMakanan.get(i).get(l); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int subtotal = banyakPesananMakanan.get(i).get(l) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
+                    int urutanBanyak =  l - 1;
+                    int subtotal = banyakPesananMakanan.get(i).get(urutanBanyak) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l ,restaurant.get(namaRestaurant), banyakPesananMakanan.get(i).get(l), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l ,restaurant.get(namaRestaurant), banyakPesananMakanan.get(i).get(urutanBanyak), subtotal);
                 }
                 System.out.println();
                 System.out.println("MINUMAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
-                for (int m = 1; m < pilihanMenuMakanan.get(m).size(); i++ ){
+                for (int m = 1; m < pilihanMenuMinuman.get(i).size(); m++ ){
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
                     int menu = pilihanMenuMinuman.get(i).get(m); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int subtotal = banyakPesananMinuman.get(i).get(m) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
+                    int urutanBanyak =  m - 1;
+                    int subtotal = banyakPesananMinuman.get(i).get(urutanBanyak) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m ,restaurant.get(namaRestaurant), banyakPesananMinuman.get(i).get(m), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m ,restaurant.get(namaRestaurant), banyakPesananMinuman.get(i).get(urutanBanyak), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
 
             } else if (pilihanMenuMakanan.size() != 0 && pilihanMenuMinuman.size() != 0 && i != pesananMakanan && i == pesananMinuman) {
                 // user tidak memesan makanan
-                System.out.println("PESANAN KE-"+ (i+1));
-                System.out.println();
                 System.out.println("MINUMAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
-                for (int m = 1; m < pilihanMenuMakanan.get(m).size(); i++ ){
+                for (int m = 1; m < pilihanMenuMinuman.get(i).size(); m++ ){
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
                     int menu = pilihanMenuMinuman.get(i).get(m); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int subtotal = banyakPesananMinuman.get(i).get(m) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
+                    int urutanBanyak =  m - 1;
+                    int subtotal = banyakPesananMinuman.get(i).get(urutanBanyak) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m ,restaurant.get(namaRestaurant), banyakPesananMinuman.get(i).get(m), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m ,restaurant.get(namaRestaurant), banyakPesananMinuman.get(i).get(urutanBanyak), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
 
             } else if (pilihanMenuMakanan.size() != 0 && pilihanMenuMinuman.size() != 0 && i == pesananMakanan && i != pesananMinuman) {
                 // user tidak memesan minuman
-                System.out.println("PESANAN KE-"+ (i+1));
-                System.out.println();
+
                 System.out.println("MAKANAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
-                for (int l = 0; l < pilihanMenuMakanan.get(ma).size(); l++ ){
+                for (int l = 1; l < pilihanMenuMakanan.get(i).size(); l++ ){
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
                     int menu = pilihanMenuMakanan.get(i).get(l); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int subtotal = banyakPesananMakanan.get(i).get(l) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
+                    int urutanBanyak =  l - 1;
+                    int subtotal = banyakPesananMakanan.get(i).get(urutanBanyak) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l ,restaurant.get(namaRestaurant), banyakPesananMakanan.get(i).get(l), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l ,restaurant.get(namaRestaurant), banyakPesananMakanan.get(i).get(urutanBanyak), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
 
             } else if (pilihanMenuMakanan.size() == 0 && pilihanMenuMinuman.size() != 0 && i == pesananMinuman){
                 // hanya memesan minuman saat pesanan pertamanya
-                System.out.println("PESANAN KE-"+ (i+1));
-                System.out.println();
+
                 System.out.println("MINUMAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
-                for (int m = 1; m < pilihanMenuMakanan.get(m).size(); i++ ){
+                for (int m = 1; m < pilihanMenuMinuman.get(i).size(); m++ ){
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
                     int menu = pilihanMenuMinuman.get(i).get(m); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int subtotal = banyakPesananMinuman.get(i).get(m) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
+                    int urutanBanyak =  m - 1;
+                    int subtotal = banyakPesananMinuman.get(i).get(urutanBanyak) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m ,restaurant.get(namaRestaurant), banyakPesananMinuman.get(i).get(m), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m ,restaurant.get(namaRestaurant), banyakPesananMinuman.get(i).get(urutanBanyak), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
 
             } else if (pilihanMenuMakanan.size() != 0 && pilihanMenuMinuman.size() == 0 && i == pesananMakanan) {
                 // hanya memesan makanan saat pesanan pertamanya
-                System.out.println("PESANAN KE-"+ (i+1));
-                System.out.println();
+
                 System.out.println("MAKANAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
-                for (int l = 0; l < pilihanMenuMakanan.get(ma).size(); l++ ){
+                for (int l = 1; l < pilihanMenuMakanan.get(i).size(); l++ ){
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
                     int menu = pilihanMenuMakanan.get(i).get(l); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int subtotal = banyakPesananMakanan.get(i).get(l) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
+                    int urutanBanyak =  l - 1;
+                    int subtotal = banyakPesananMakanan.get(i).get(urutanBanyak) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l ,restaurant.get(namaRestaurant), banyakPesananMakanan.get(i).get(l), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l ,restaurant.get(namaRestaurant), banyakPesananMakanan.get(i).get(urutanBanyak), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
 
