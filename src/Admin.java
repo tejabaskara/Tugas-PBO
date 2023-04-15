@@ -3,8 +3,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 public class Admin {
     public static ArrayList<String> alamat = new ArrayList<String>();
-    public static ArrayList<ArrayList<String>> restaurant = new ArrayList< ArrayList <String>>();
-    public static ArrayList<ArrayList<Integer>> hargaMenu = new ArrayList< ArrayList <Integer>>();
+    public static ArrayList<String> restaurant = new ArrayList<>();
+    public static ArrayList<ArrayList<String>> menuMakanan = new ArrayList<>();
+    public static ArrayList<ArrayList<String>> menuMinuman = new ArrayList<>();
+    public static ArrayList<ArrayList<Integer>> hargaMakanan = new ArrayList<>();
+    public static ArrayList<ArrayList<Integer>> hargaMinuman = new ArrayList<>();
+
     private static int banyakRestauran=0;
     public static void MenuAdmin(){ // MENU UTAMA DALAM ADMIN SETELAH LOGIN
         System.out.println("MENU ADMIN");
@@ -44,14 +48,16 @@ public class Admin {
 
     private static void TambahRestaurant(){ // TEMPAT MENAMBAHKAN MENU DENGAN INPUT STRING
 
-        restaurant.add(new ArrayList<>());
-        hargaMenu.add(new ArrayList<>());
+        hargaMakanan.add(new ArrayList<>());
+        hargaMinuman.add(new ArrayList<>());
+        menuMakanan.add(new ArrayList<>());
+        menuMinuman.add(new ArrayList<>());
 
 
         System.out.println("TAMBAH RESTAURANT");
         System.out.print("Masukkan nama restaurant: ");
         String tempNama = Utility.scanSTR();
-        restaurant.get(banyakRestauran).add(0, tempNama);
+        restaurant.add(tempNama);
 
 
         System.out.print("Masukkan alamat restaurant: ");
@@ -61,23 +67,43 @@ public class Admin {
 //        System.out.print("Masukkan banyak menu di restaurant: ");
 //        int banyakMenu = Utility.scanINT();
         int pilihan = 0;
+        int ma = 0;
+        int mi = 0;
         do {
-            int i = 0;
-            i+=1;
-            System.out.print("masukkan menu: ");
-            String menu = Utility.scanSTR();
+            System.out.println("1. Tambah menu makanan");
+            System.out.println("2. Tambah menu minuman");
+            System.out.print("Masukkan pilihan");
+            int menu = Utility.scanINT();
+            if (menu == 1){
+                System.out.println(ma);
+                System.out.print("Masukkan nama makanan: ");
+                String makanan = Utility.scanSTR();
 //            String menu = "a";
-            restaurant.get(banyakRestauran).add(i, menu);
-            System.out.print("masukkan harga: ");
-            int harga = Utility.scanINT();
+                menuMakanan.get(banyakRestauran).add(ma, makanan);
+                System.out.print("Masukkan harga: ");
+                int harga = Utility.scanINT();
 //            int harga = 2000;
-            hargaMenu.get(banyakRestauran).add(i-1, harga);
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            System.out.println("MENU");
-            for (int j=1; j < restaurant.get(banyakRestauran).size(); j++){
-                System.out.printf("%d. %s\t\t\t%s\n",j, restaurant.get(banyakRestauran).get(j), hargaMenu.get(banyakRestauran).get(j-1));
+                hargaMakanan.get(banyakRestauran).add(ma, harga);
+                ma += 1;
+            }else if (menu == 2){
+                System.out.println(mi);
+                System.out.print("Masukkan nama minuman: ");
+                String minuman = Utility.scanSTR();
+//            String menu = "a";
+                menuMinuman.get(banyakRestauran).add(mi, minuman);
+                System.out.print("Masukkan harga: ");
+                int harga = Utility.scanINT();
+//            int harga = 2000;
+                hargaMinuman.get(banyakRestauran).add(mi, harga);
+                mi += 1;
+            }else {
+                System.out.println("Anda memasukkan angka yang salah");
             }
+
+            System.out.println("MENU");
+            System.out.println();
+            lihatMenu(banyakRestauran);
+
             System.out.println();
             System.out.println("1. Tambah menu");
             System.out.println("0. Keluar");
@@ -108,14 +134,12 @@ public class Admin {
             MenuAdmin();
         } else {
             pilihan -= 1;
-            System.out.println("Nama Restaurant: " + restaurant.get(pilihan).get(0));
+            System.out.println("Nama Restaurant: " + restaurant.get(pilihan));
             System.out.println("Alamat: " + alamat.get(pilihan));
 //            System.out.println("a");
 //            System.out.println(pilihan);
             System.out.printf("MENU:\t\t\tHARGA:\n");
-            for (int i=1; i < restaurant.get(pilihan).size(); i++){
-                System.out.printf("%d. %s\t\t\t%s\n",i, restaurant.get(pilihan).get(i), hargaMenu.get(pilihan).get(i-1));
-            }
+            lihatMenu(pilihan);
             System.out.println("MASUKKAN 0 UNTUK KELUAR");
             int keluar = Utility.scanINT();
             System.out.print("\033[H\033[2J");
@@ -128,7 +152,33 @@ public class Admin {
 
     private static void lihatRestauran(){ // UNTUK MELIHAT RESTAURAN YANG ADA
         for (int i= 0; i < restaurant.size(); i++ ){
-            System.out.printf("%d. %s\n",i+1 , restaurant.get(i).get(0));
+            System.out.printf("%d. %s\n",i+1 , restaurant.get(i));
+        }
+    }
+
+    public static void  lihatMenu(int restauran){
+        System.out.println("MENU");
+        System.out.println();
+        if (menuMakanan.get(restauran).size() != 0 && menuMinuman.get(restauran).size() != 0){
+            System.out.println("MAKANAN");
+            for (int nomerMakanan = 0; nomerMakanan < menuMakanan.get(restauran).size(); nomerMakanan++){
+                System.out.printf("%d. %s\t\t\t%s\n",nomerMakanan+1, menuMakanan.get(restauran).get(nomerMakanan), hargaMakanan.get(restauran).get(nomerMakanan));
+            }
+            System.out.println();
+            System.out.println("MINUMAN");
+            for (int nomerMinuman = 0; nomerMinuman < menuMinuman.get(restauran).size(); nomerMinuman++){
+                System.out.printf("%d. %s\t\t\t%s\n",nomerMinuman+1, menuMinuman.get(restauran).get(nomerMinuman), hargaMinuman.get(restauran).get(nomerMinuman));
+            }
+        } else if (menuMakanan.get(banyakRestauran).size() != 0 && menuMinuman.get(banyakRestauran).size() == 0) {
+            System.out.println("MAKANAN");
+            for (int nomerMakanan = 0; nomerMakanan < menuMakanan.get(restauran).size(); nomerMakanan++){
+                System.out.printf("%d. %s\t\t\t%s\n",nomerMakanan+1, menuMakanan.get(restauran).get(nomerMakanan), hargaMakanan.get(restauran).get(nomerMakanan));
+            }
+        } else if (menuMakanan.get(banyakRestauran).size() == 0 && menuMinuman.get(banyakRestauran).size() != 0) {
+            System.out.println("MINUMAN");
+            for (int nomerMinuman = 0; nomerMinuman < menuMinuman.get(restauran).size(); nomerMinuman++){
+                System.out.printf("%d. %s\t\t\t%s\n",nomerMinuman+1, menuMinuman.get(restauran).get(nomerMinuman), hargaMinuman.get(restauran).get(nomerMinuman));
+            }
         }
     }
 
