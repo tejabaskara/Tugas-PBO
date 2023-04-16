@@ -30,7 +30,7 @@ java Main
 5. program pun akan berjalan
 
 ## UML
-![UML](https://drive.google.com/file/d/1oAR8X8erehZ1ouCU7y2C4auM5NZWOzCQ/view?usp=share_link)
+![UML](https://drive.google.com/uc?id=1oAR8X8erehZ1ouCU7y2C4auM5NZWOzCQ)
 
 ### PEMBUAT
 @tejabaskara
