@@ -401,7 +401,10 @@ public class Customer {
 
         int menuPesan = 0;
         int urutanMakanan = pilihanMenuMakanan.get(makanan).size() ; //untuk menghitung banyaknya pilihan makanan yang sudah dilakukan
-        int urutanMinuman = pilihanMenuMakanan.get(makanan).size() ;
+        int urutanMinuman = pilihanMenuMakanan.get(minuman).size() ;
+
+//        System.out.println(pilihanMenuMakanan.get(makanan).size());
+//        System.out.println(pilihanMenuMakanan.get(minuman).size());
 
         do {
             System.out.println("MENU RESTAURANT");
@@ -439,7 +442,7 @@ public class Customer {
                 break;
             } else if (menuPesan == 1) {
                 Admin.lihatMenu(pilihan);
-                System.out.println("Masukkan nomor pilihan makanan anda: ");
+                System.out.print("Masukkan nomor pilihan makanan anda: ");
                 int pilihanMakanan = Utility.scanINT();
                 pilihanMakanan -= 1;
 
@@ -506,6 +509,8 @@ public class Customer {
             System.out.println("Alamat: "+ alamat.get(namaRestauran));
 
 
+
+
 //            System.out.println(pilihanMenuMakanan.size());
 //            System.out.println(pilihanMenuMinuman.size());
 
@@ -539,36 +544,33 @@ public class Customer {
 
             if (pilihanMenuMakanan.size() != 0 && pilihanMenuMinuman.size() != 0 && i == pesananMakanan && i == pesananMinuman){
                 // user memesan makanan dan minuman
-
                 System.out.println("MAKANAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
                 int total = 0;
-                for (int l = 1; l < pilihanMenuMakanan.get(i).size(); l++ ){
+                for (int l = 0; l < pilihanMenuMakanan.get(i).size() - 1; l++ ){
+                    int nomerData = l+1;
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
-                    int menu = pilihanMenuMakanan.get(i).get(l) + 1; // ngambil data menu yang diinginkan
+                    int menu = pilihanMenuMakanan.get(i).get(nomerData); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int urutanBanyak =  l - 1;
-                    int harga =  menu - 1;
-                    int subtotal = banyakPesananMakanan.get(i).get(urutanBanyak) * hargaMakanan.get(namaRestaurant).get(harga); // menghitung harga tiap menu yang dipesan
+                    int subtotal = banyakPesananMakanan.get(i).get(l) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
                     total += subtotal;
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l , menuMakanan.get(namaRestaurant).get(menu), banyakPesananMakanan.get(i).get(urutanBanyak), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", nomerData , menuMakanan.get(namaRestaurant).get(menu), banyakPesananMakanan.get(i).get(l), subtotal);
                 }
                 System.out.println();
                 System.out.println("MINUMAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
-                for (int m = 1; m < pilihanMenuMinuman.get(i).size(); m++ ){
+                for (int m = 0; m < pilihanMenuMinuman.get(i).size() - 1; m++ ){
+                    int nomerData = m+1;
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
-                    int menu = pilihanMenuMinuman.get(i).get(m) + 1; // ngambil data menu yang diinginkan
+                    int menu = pilihanMenuMinuman.get(i).get(nomerData); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int urutanBanyak =  m - 1;
-                    int harga =  menu - 1;
-                    int subtotal = banyakPesananMinuman.get(i).get(urutanBanyak) * hargaMinuman.get(namaRestaurant).get(harga); // menghitung harga tiap menu yang dipesan
+                    int subtotal = banyakPesananMinuman.get(i).get(m) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
                     total += subtotal;
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m , menuMinuman.get(namaRestaurant).get(menu), banyakPesananMinuman.get(i).get(urutanBanyak), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", nomerData , menuMinuman.get(namaRestaurant).get(menu), banyakPesananMinuman.get(i).get(m), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
                 System.out.println("TOTAL: " + total);
@@ -578,17 +580,16 @@ public class Customer {
                 System.out.println("MINUMAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
                 int total = 0;
-                for (int m = 1; m < pilihanMenuMinuman.get(i).size(); m++ ){
+                for (int m = 0; m < pilihanMenuMinuman.get(i).size() - 1; m++ ){
+                    int nomerData = m+1;
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
-                    int menu = pilihanMenuMinuman.get(i).get(m) + 1; // ngambil data menu yang diinginkan
+                    int menu = pilihanMenuMinuman.get(i).get(nomerData); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int urutanBanyak =  m - 1;
-                    int harga = menu - 1;
-                    int subtotal = banyakPesananMinuman.get(i).get(urutanBanyak) * hargaMinuman.get(namaRestaurant).get(harga); // menghitung harga tiap menu yang dipesan
+                    int subtotal = banyakPesananMinuman.get(i).get(m) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
                     total += subtotal;
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m , menuMinuman.get(namaRestaurant).get(menu), banyakPesananMinuman.get(i).get(urutanBanyak), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", nomerData , menuMinuman.get(namaRestaurant).get(menu), banyakPesananMinuman.get(i).get(m), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
                 System.out.println("TOTAL: " + total);
@@ -599,17 +600,16 @@ public class Customer {
                 System.out.println("MAKANAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
                 int total = 0;
-                for (int l = 1; l < pilihanMenuMakanan.get(i).size(); l++ ){
+                for (int l = 0; l < pilihanMenuMakanan.get(i).size() - 1; l++ ){
+                    int nomerData = l+1;
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
-                    int menu = pilihanMenuMakanan.get(i).get(l) + 1; // ngambil data menu yang diinginkan
+                    int menu = pilihanMenuMakanan.get(i).get(nomerData); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int urutanBanyak =  l - 1;
-                    int harga = menu - 1;
-                    int subtotal = banyakPesananMakanan.get(i).get(urutanBanyak) * hargaMakanan.get(namaRestaurant).get(harga); // menghitung harga tiap menu yang dipesan
+                    int subtotal = banyakPesananMakanan.get(i).get(l) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
                     total += subtotal;
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l ,menuMakanan.get(namaRestaurant).get(menu), banyakPesananMakanan.get(i).get(urutanBanyak), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", nomerData , menuMakanan.get(namaRestaurant).get(menu), banyakPesananMakanan.get(i).get(l), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
                 System.out.println("TOTAL: " + total);
@@ -620,17 +620,16 @@ public class Customer {
                 System.out.println("MINUMAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
                 int total = 0;
-                for (int m = 1; m < pilihanMenuMinuman.get(i).size(); m++ ){
+                for (int m = 0; m < pilihanMenuMinuman.get(i).size() - 1; m++ ){
+                    int nomerData = m+1;
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
-                    int menu = pilihanMenuMinuman.get(i).get(m) + 1; // ngambil data menu yang diinginkan
+                    int menu = pilihanMenuMinuman.get(i).get(nomerData); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int urutanBanyak =  m - 1;
-                    int harga = menu - 1;
-                    int subtotal = banyakPesananMinuman.get(i).get(urutanBanyak) * hargaMinuman.get(namaRestaurant).get(harga); // menghitung harga tiap menu yang dipesan
+                    int subtotal = banyakPesananMinuman.get(i).get(m) * hargaMinuman.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
                     total += subtotal;
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", m ,menuMinuman.get(namaRestaurant).get(menu), banyakPesananMinuman.get(i).get(urutanBanyak), subtotal);
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", nomerData , menuMinuman.get(namaRestaurant).get(menu), banyakPesananMinuman.get(i).get(m), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
                 System.out.println("TOTAL: " + total);
@@ -641,17 +640,16 @@ public class Customer {
                 System.out.println("MAKANAN");
                 System.out.printf("Menu\t\t\tBanyak pesanan\t\t\tSubtotal\n");
                 int total = 0;
-                for (int l = 1; l < pilihanMenuMakanan.get(i).size(); l++ ){
+                for (int l = 0; l < pilihanMenuMakanan.get(i).size() - 1; l++ ){
+                    int nomerData = l+1;
                     int namaRestaurant = pilihanRestauran.get(i) - 1; // ngambil data nama restaurant dari array pesanan
 //            System.out.println("Nomer restauran: "+ namaRestaurant);
-                    int menu = pilihanMenuMakanan.get(i).get(l) + 1; // ngambil data menu yang diinginkan
+                    int menu = pilihanMenuMakanan.get(i).get(nomerData); // ngambil data menu yang diinginkan
 //            System.out.println("Nomer menu: "+ menu);
-                    int urutanBanyak =  l - 1;
-                    int harga = menu - 1;
-                    int subtotal = banyakPesananMakanan.get(i).get(urutanBanyak) * hargaMakanan.get(namaRestaurant).get(harga); // menghitung harga tiap menu yang dipesan
-                    total += subtotal;
+                    int subtotal = banyakPesananMakanan.get(i).get(l) * hargaMakanan.get(namaRestaurant).get(menu); // menghitung harga tiap menu yang dipesan
 //            System.out.println("subtotal: "+ subtotal);
-                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", l ,menuMakanan.get(namaRestaurant).get(menu), banyakPesananMakanan.get(i).get(urutanBanyak), subtotal);
+                    total += subtotal;
+                    System.out.printf("%d. %s\t\t\t%d\t\t\t%d\n", nomerData , menuMakanan.get(namaRestaurant).get(menu), banyakPesananMakanan.get(i).get(l), subtotal);
                 }
                 System.out.println("JARAK: " + jarakRestauran.get(i));
                 System.out.println("TOTAL: " + total);
