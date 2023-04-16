@@ -1,15 +1,10 @@
-import javax.net.ssl.SSLContext;
-import javax.sound.midi.MidiFileFormat;
+
 import java.util.ArrayList;
 
 public class Customer {
     public static ArrayList<String> alamat = Admin.alamat;
     public static ArrayList<Integer> jarakRestauran = new ArrayList<>();
     public static ArrayList<String> restaurant = Admin.restaurant;
-
-    /*
-    array menu mulai dari index ke 0
-     */
     public static ArrayList<ArrayList<String>> menuMakanan = Admin.menuMakanan;
     public static ArrayList<ArrayList<String>> menuMinuman = Admin.menuMinuman;
     public static ArrayList<ArrayList<Integer>> hargaMakanan = Admin.hargaMakanan;
@@ -19,9 +14,9 @@ public class Customer {
     public static ArrayList<ArrayList<Integer>> banyakPesananMakanan = new ArrayList<>();
     public static ArrayList<ArrayList<Integer>> banyakPesananMinuman = new ArrayList<>();
     public static ArrayList<Integer> pilihanRestauran = new ArrayList<>();
-    public static int pesanan= 0;
-    public static int ma = 0;
-    public static int mi = 0;
+    private static int pesanan= 0;
+    private static int ma = 0;
+    private static int mi = 0;
 
     public static void menuCustomer(){
 
@@ -394,9 +389,7 @@ public class Customer {
         }
         menuCustomer();
     }
-//
-//
-//
+
     private static void tambahPesanan(int pilihan, int riwayat, int totalBayar, int ongkir, int jarak, int makanan, int minuman){
 
         int menuPesan = 0;
@@ -492,8 +485,7 @@ public class Customer {
         }while (true);
 
     }
-//
-//
+
     //LIHAT PESANAN YANG UDAH DILAKUKAN
     private static void lihatPesanan(){
         int pesananDilakukan = pilihanRestauran.size();

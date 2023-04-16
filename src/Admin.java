@@ -1,6 +1,5 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 public class Admin {
     public static ArrayList<String> alamat = new ArrayList<String>();
     public static ArrayList<String> restaurant = new ArrayList<>();
@@ -190,7 +189,7 @@ public class Admin {
         }
     }
 
-    public static void HapusRestauran(){ // UNTUK MENGHAPUS RESTURAN BESERTA MENU MENU YANG ADA
+    private static void HapusRestauran(){ // UNTUK MENGHAPUS RESTURAN BESERTA MENU MENU YANG ADA
         System.out.println("HAPUS RESTAURANT");
         System.out.println("Daftar Restaurant");
         lihatRestauran();
