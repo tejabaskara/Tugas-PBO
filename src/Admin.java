@@ -63,6 +63,8 @@ public class Admin {
         System.out.print("Masukkan alamat restaurant: ");
         String tempAlamat = Utility.scanSTR();
         alamat.add(tempAlamat);
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
 
 //        System.out.print("Masukkan banyak menu di restaurant: ");
 //        int banyakMenu = Utility.scanINT();
@@ -74,6 +76,8 @@ public class Admin {
             System.out.println("2. Tambah menu minuman");
             System.out.print("Masukkan pilihan: ");
             int menu = Utility.scanINT();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             if (menu == 1){
 //                System.out.println(ma);
                 System.out.print("Masukkan nama makanan: ");
@@ -100,6 +104,8 @@ public class Admin {
                 System.out.println("Anda memasukkan angka yang salah");
             }
 
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             lihatMenu(banyakRestauran);
 
             System.out.println();
