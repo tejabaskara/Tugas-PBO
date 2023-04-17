@@ -18,16 +18,20 @@ untuk dapat menggunakan program ini pada terminal anda, anda diharuskan untuk me
 Jika anda sudah memiliki semua program diatas anda dapat mengikuti cara di bawah ini:
 1. _clone_ GIT [Repository](https://github.com/tejabaskara/Tugas-PBO.git) ini
 2. masuk ke dalam folder lalu buka folder SRC lalu buka terminal pada folder tersebut
-3. ketik seperti berikut 
+3. masukkan perintah berikut pada terminal 
 ```bash
 javac main.java
 ```
-lalu tekan enter
-4. lalu ketik 
+4. setelah memasukkan perintah diatas masukkan perintah berikut ini pada terminal 
 ```bash
 java Main
 ```
 5. program pun akan berjalan
+
+## CARA KERJA PROGRAM
+Program ini akan dimulai dari bagian login. Pada bagian login user dapat masuk sebagai admin ataupun customer. Pada bagian admin user dapat menambahkan restauran, menghapus restauran, dan melihat restaurant yang sudah dimasukkan ke dalam array. Untuk dapat menggunakan fitur melihat dan menghapus restaurant user harus menambah terlebih dahulu data restauran. 
+
+Pada bagian user, user dapat menambahkan pesanan dan melihat pesanan. Untuk dapat menggunakan kedua fitur tersebut kita diperlukan data-data yang dimasukkan pada bagian menu admin. Setelah melakukan pesanan kita dapat melihat riwayat pesanan yang telah kita lakukan 
 
 ## UML
 ![UML](https://drive.google.com/uc?id=1oAR8X8erehZ1ouCU7y2C4auM5NZWOzCQ)
