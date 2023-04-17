@@ -36,6 +36,13 @@ Pada bagian user, user dapat menambahkan pesanan dan melihat pesanan. Untuk dapa
 ## UML
 ![UML](https://drive.google.com/uc?id=1oAR8X8erehZ1ouCU7y2C4auM5NZWOzCQ)
 
+## GAMBAR PENGGUNAAN PROGRAM
+![MenuCustomer](https://drive.google.com/uc?id=19W7W0aTozSbXY5vQaMHgOWsSOyL2y7NV)
+
+![Login](https://drive.google.com/uc?id=16aV9VP2eFKngIDuThsXSesQfqySTpJMT)
+
+![MenuAdmin](https://drive.google.com/uc?id=1jlD4lt7Jbd6S_U0eUhGJLxVIh4rMSpdh)
+
 ### PEMBUAT
 @tejabaskara
 
